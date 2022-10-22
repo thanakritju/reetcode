@@ -72,3 +72,29 @@ pub struct Stat {
 pub struct Difficulty {
     pub level: i64,
 }
+
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Problem {
+    pub data: Data,
+}
+
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Data {
+    pub question: Question,
+}
+
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Question {
+    pub question_id: String,
+    pub question_frontend_id: String,
+    pub question_title: String,
+    pub enable_debugger: bool,
+    pub enable_run_code: bool,
+    pub enable_submit: bool,
+    pub enable_test_mode: bool,
+    pub example_testcase_list: Vec<String>,
+    pub meta_data: String,
+}
