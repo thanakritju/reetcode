@@ -1,3 +1,6 @@
+mod fetcher;
+
 fn main() {
-    println!("Hello, world!");
+    let result = fetcher::get_problems().unwrap();
+    println!("{:?}", result);
 }
