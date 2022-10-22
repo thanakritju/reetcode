@@ -1,16 +1,5 @@
-extern crate reqwest;
-extern crate serde_derive;
-extern crate serde_json;
 use serde_derive::Deserialize;
 use serde_derive::Serialize;
-
-const PROBLEMS_URL: &str = "https://leetcode.com/api/problems/algorithms/";
-
-pub fn get_problems() -> Option<Problems> {
-    let res = reqwest::blocking::get(PROBLEMS_URL).unwrap();
-    let problems = res.json::<Problems>().unwrap();
-    return Some(problems);
-}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

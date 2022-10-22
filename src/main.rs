@@ -1,6 +1,6 @@
 mod fetcher;
 
 fn main() {
-    let result = fetcher::get_problems().unwrap();
+    let result = fetcher::lib::get_problems().unwrap();
     println!("{:?}", result);
 }
