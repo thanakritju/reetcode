@@ -8,45 +8,39 @@ impl Solution {
             match char {
                 'I' => ans += 1,
                 'V' => {
-                    if prev_char == 'I' {
-                        ans += 3
-                    } else {
-                        ans += 5
+                    ans += match prev_char {
+                        'I' => 3,
+                        _ => 5,
                     }
                 }
                 'X' => {
-                    if prev_char == 'I' {
-                        ans += 8
-                    } else {
-                        ans += 10
+                    ans += match prev_char {
+                        'I' => 8,
+                        _ => 10,
                     }
                 }
                 'L' => {
-                    if prev_char == 'X' {
-                        ans += 30
-                    } else {
-                        ans += 50
+                    ans += match prev_char {
+                        'X' => 30,
+                        _ => 50,
                     }
                 }
                 'C' => {
-                    if prev_char == 'X' {
-                        ans += 80
-                    } else {
-                        ans += 100
+                    ans += match prev_char {
+                        'X' => 80,
+                        _ => 100,
                     }
                 }
                 'D' => {
-                    if prev_char == 'C' {
-                        ans += 300
-                    } else {
-                        ans += 500
+                    ans += match prev_char {
+                        'C' => 300,
+                        _ => 500,
                     }
                 }
                 'M' => {
-                    if prev_char == 'C' {
-                        ans += 800
-                    } else {
-                        ans += 1000
+                    ans += match prev_char {
+                        'C' => 800,
+                        _ => 1000,
                     }
                 }
                 _ => eprintln!("Invalid format"),
@@ -76,6 +70,8 @@ mod tests {
         assert_eq!(58, Solution::roman_to_int("LVIII".to_string()));
         assert_eq!(40, Solution::roman_to_int("XL".to_string()));
         assert_eq!(60, Solution::roman_to_int("LX".to_string()));
+        assert_eq!(900, Solution::roman_to_int("CM".to_string()));
+        assert_eq!(400, Solution::roman_to_int("CD".to_string()));
         assert_eq!(1994, Solution::roman_to_int("MCMXCIV".to_string()));
     }
 }
