@@ -1,6 +1,6 @@
 mod fetcher;
+mod solution;
 
 fn main() {
-    let result = fetcher::lib::get_problems().unwrap();
-    println!("{:?}", result.user_name);
+    println!("Welcome to reetcode");
 }
