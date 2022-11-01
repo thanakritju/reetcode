@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::prelude::*;
+use std::io::BufReader;
 
 use crate::fetcher::lib::get_problems;
 use crate::fetcher::lib::get_slug_name_by_id;
@@ -23,12 +24,31 @@ pub fn generate_template(id: i64) -> bool {
 fn update_mod_file(content: String) {
     let mut file = OpenOptions::new()
         .write(true)
+        .read(true)
         .append(true)
         .open("src/solution/mod.rs")
         .unwrap();
 
     if let Err(e) = writeln!(file, "mod {};", content) {
         eprintln!("Couldn't write to file: {}", e);
+    }
+
+    let reader = BufReader::new(&mut file);
+
+    let mut lines: Vec<_> = reader
+        .lines()
+        .map(|l| l.expect("Couldn't read a line"))
+        .collect();
+    lines.dedup();
+
+    let mut file = OpenOptions::new()
+        .write(true)
+        .open("src/solution/mod.rs")
+        .unwrap();
+
+    for line in lines {
+        file.write_all(line.as_bytes())
+            .expect("Couldn't write to file");
     }
 }
 
