@@ -12,7 +12,7 @@ pub fn get_problems() -> Option<Problems> {
     return Some(problems);
 }
 
-fn get_slug_name_by_id(id: i64, problems: Vec<StatStatusPair>) -> Option<String> {
+pub fn get_slug_name_by_id(id: i64, problems: Vec<StatStatusPair>) -> Option<String> {
     for problem in problems {
         if problem.stat.question_id == id {
             return problem.stat.question_article_slug;
