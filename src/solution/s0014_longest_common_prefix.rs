@@ -3,6 +3,20 @@ pub struct Solution {}
 impl Solution {
     pub fn longest_common_prefix(strs: Vec<String>) -> String {
         let mut longest = String::from("");
+        let first = &strs[0];
+        for (i, c) in first.chars().enumerate() {
+            for s in &strs[1..] {
+                if let Some(my_char) = s.chars().nth(i) {
+                    if c != my_char {
+                        return longest;
+                    }
+                } else {
+                    return longest;
+                }
+            }
+            longest.push(c);
+        }
+
         longest
     }
 }
